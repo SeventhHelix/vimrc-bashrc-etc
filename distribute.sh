@@ -2,10 +2,10 @@
 
 # Distributes the files located in this directory
 
-mv ~/.vimrc ~/vimrc.bak
+mv ~/.vimrc ~/.vimrc.bak
 cp vimrc ~/.vimrc
 
-mv ~/.bashr ~/bashrc.bak
+mv ~/.bashrc ~/.bashrc.bak
 cp bashrc ~/.bashrc
 
 mv ~/.Xdefaults ~/.Xdefaults.bak
