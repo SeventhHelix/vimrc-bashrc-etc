@@ -127,7 +127,7 @@ myBorderWidth = 1
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask = mod1Mask
+myModMask = mod4Mask
  
 -- The mask for the numlock key. Numlock status is "masked" from the
 -- current modifier status, so the keybindings will work with numlock on or
@@ -194,15 +194,17 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
    -- Volume stuff - Jeff
   -- Mute volume.
   , ((modMask, xK_F10),
-     spawn "amixer -q set Front toggle")
+     spawn "amixer -q set Master toggle")
   
   -- Decrease volume.
-  , ((modMask, xK_F11),
-     spawn "amixer -q set Front 10%-")
+  --, ((modMask, xK_F11),
+    , ((0, 0x1008FF11),
+     spawn "amixer -q set Master 5%-")
   
   -- Increase volume.
-  , ((modMask, xK_F12),
-     spawn "amixer -q set Front 10%+")
+  --, ((modMask, xK_F12),
+    , ((0, 0x1008FF13),
+     spawn "amixer -q set Master 5%+")
   --------------------------------------------------------------------
   -- "Standard" xmonad key bindings
   --

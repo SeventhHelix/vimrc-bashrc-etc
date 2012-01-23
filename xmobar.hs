@@ -6,7 +6,7 @@ Config {
     font = "xft:Fixed-8",
     bgColor = "#000000",
     fgColor = "#ffffff",
-    position = Static { xpos = 0, ypos = 0, width = 1680, height = 16 },
+    position = Static { xpos = 0, ypos = 0, width = 1024, height = 16 },
     lowerOnStart = True,
     commands = [
         Run Battery [] 10,
@@ -16,9 +16,11 @@ Config {
         Run Swap [] 10,
         Run Network "eth0" ["-t","Net: <rx>, <tx>","-H","200","-L","10","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 5,
         Run Date "%a %b %_d %l:%M" "date" 10,
+        --Run Com "echo Vol: [`amixer get Master playback | egrep -o \[*[0-9]*[0-9]*[0-9]\%\] | sed 's/\[//' | sed 's/\%\]//'`%]" [] "vol" 10, 
+        Run Com "~/Scripts/volBar.sh" [] "vol" 10,
         Run StdinReader
     ],
     sepChar = "%",
     alignSep = "}{",
-    template = "%StdinReader% }{ %cpu%  |   %memory%   |  <fc=#FFFFCC>%date%</fc>"
+    template = "%StdinReader% }{ %battery%   |   Vol: %vol%   |   %cpu%   |   %memory%   |   <fc=#FFFFCC>%date%</fc>"
 }

@@ -91,7 +91,7 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 " }}}
 
-"{{{ Functions and Mappings
+"{{{ Functions
 
 
 "{{{Theme Rotating
@@ -123,7 +123,8 @@ nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <C-h> :tabprev<CR>
 
 " New Tab
-nnoremap <silent> <C-t> :tabnew<CR>
+" nnoremap <silent> <C-t> :tabnew<CR>
+" Conflicts with ctags
 
 " Rotate Color Scheme <F8>
 nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
@@ -158,10 +159,10 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
-"inoremap  <right> <nop>
-"inoremap  <left> <nop>
-"inoremap  <down> <nop>
-"inoremap  <up> <nop>
+inoremap  <right> <nop>
+inoremap  <left> <nop>
+inoremap  <down> <nop>
+inoremap  <up> <nop>
 
 nnoremap <C-a> :A<CR> 
 
@@ -195,5 +196,3 @@ call pathogen#infect()
 " " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 "}}}
-
-colorscheme elflord
