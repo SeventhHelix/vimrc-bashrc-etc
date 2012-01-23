@@ -2,7 +2,7 @@ set nocp
 filetype plugin on
 filetype indent on
 set grepprg="grep \ -nH\ $*" "Set for latex-vim
-map <F9> :!~/.ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"map <F9> :!~/.ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 "{{{Misc Settings
 

@@ -111,6 +111,7 @@ alias csclub='ssh j6dyck@csclub.uwaterloo.ca'
 alias linuxstudent='ssh j6dyck@linux.student.cs.uwaterloo.ca'
 
 #cd aliases
+alias cdu='cd ~/Documents/University/Term_2B/'
 
 #misc aliases
 alias s='screen -rd'
