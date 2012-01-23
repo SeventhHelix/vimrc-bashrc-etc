@@ -4544,3 +4544,6 @@ endfunction
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
+let Tlist_Ctags_Cmd = "~/.ctags"
+let Tlist_WinWidth = 50
+map <F4> :TlistToggle<cr>

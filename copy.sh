@@ -12,4 +12,4 @@ cp ~/.xmonad/xmobar.hs xmobar.hs
 
 cp ~/.xmonad/xmonad.hs xmonad.hs 
 
-cp -r ~/.vim/* vim/ 
+cp -r ~/.vim/* ./vim
