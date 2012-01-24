@@ -11,10 +11,10 @@ cp bashrc ~/.bashrc
 mv ~/.Xdefaults ~/.Xdefaults.bak
 cp Xdefaults ~/.Xdefaults
 
-mv ~/.xmonad/xmobar.hs ~/.xmonad/xmobar.hs.bak
-cp xmobar.hs ~/.xmonad/xmobar.hs
+#mv ~/.xmonad/xmobar.hs ~/.xmonad/xmobar.hs.bak
+#cp xmobar.hs ~/.xmonad/xmobar.hs
 
-mv ~/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs.bak
-cp xmonad.hs ~/.xmonad/xmonad.hs
+#mv ~/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs.bak
+#cp xmonad.hs ~/.xmonad/xmonad.hs
 
 cp -r vim/* ~/.vim/
