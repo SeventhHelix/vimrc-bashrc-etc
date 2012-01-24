@@ -111,7 +111,7 @@ alias csclub='ssh j6dyck@csclub.uwaterloo.ca'
 alias linuxstudent='ssh j6dyck@linux.student.cs.uwaterloo.ca'
 
 #cd aliases
-alias cdcs246='cd ~/cs246/asst5'
+alias cdu='cd ~/Documents/University/Term_2B/'
 
 #misc aliases
 alias s='screen -rd'
@@ -122,7 +122,6 @@ alias network-manager-to-wicd='sudo service network-manager stop; sudo service w
 alias g++='g++ -Wall'
 alias acro="acroread"
 alias rm='rm -vI'
-alias gp='git pull j6dyck@csclub.uwaterloo.ca:/users/askhader/class/cs/246/a/5 master'
 
 # Strombola sound effects
 alias runcoward="mplayer ~/Music/sfx/www.digitpress.com/run_cowd.wav"

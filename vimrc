@@ -2,7 +2,6 @@ set nocp
 filetype plugin on
 filetype indent on
 set grepprg="grep \ -nH\ $*" "Set for latex-vim
-map <F9> :!~/.ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 "{{{Misc Settings
 
@@ -63,37 +62,31 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
-" Since I use linux, I want this
-let g:clipbrdDefaultReg = '+'
-
 " When I close a tab, remove the buffer
 set nohidden
 
 " Set off the other paren
 highlight MatchParen ctermbg=4
+
+
+filetype plugin indent on
+syntax on
+
+set scrolloff=5 "Scrolling starts 5 lines before window border
+
+"History stuff
+set history=500
+set undolevels=500
+
 " }}}
 
 "{{{Look and Feel
-
-" Favorite Color Scheme
-if has("gui_running")
-"   colorscheme inkpot
-   " Remove Toolbar
-   set guioptions-=T
-   "Terminus is AWESOME
-   set guifont=Terminus\ 9
-else
-"   colorscheme metacosm
-endif
 
 "Status line gnarliness
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 " }}}
-
-"{{{ Functions
-
 
 "{{{Theme Rotating
 let themeindex=0
@@ -129,9 +122,6 @@ nnoremap <silent> <C-h> :tabprev<CR>
 
 " Rotate Color Scheme <F8>
 nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
-
-" DOS is for fools.
-nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
 
 " Up and down are more logical with g..
 nnoremap <silent> k gk
@@ -170,26 +160,18 @@ nnoremap <C-a> :A<CR>
 "}}}
 
 "{{{Taglist configuration
-let Tlist_Use_Right_Window = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_Inc_Winwidth = 0
+nnoremap <F2> :TlistToggle<CR>
+
+let Tlist_Close_On_Select = 1 "close taglist window once we selected something
+let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
+let Tlist_Show_Menu = 1 "show Tags menu in gvim
+let Tlist_Show_One_File = 1 "show tags of only one file
+let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
+let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
+"let Tlist_Process_File_Always = 1 "even without taglist window, create tags file, required for displaying tag in statusline
+let Tlist_Use_Right_Window = 1 "display taglist window on the right
+let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
 "}}}
-
-"let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_ViewRule_pdf = "kpdf"
-
-filetype plugin indent on
-syntax on
-
-set scrolloff=5 "Scrolling starts 5 lines before window border
-
-"History stuff
-set history=500
-set undolevels=500
-
-call pathogen#infect()
 
 "{{{Vim LaTeX stuff
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
@@ -197,3 +179,8 @@ call pathogen#infect()
 " " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 "}}}
+
+"let g:Tex_DefaultTargetFormat = "pdf"
+let g:Tex_ViewRule_pdf = "kpdf"
+
+call pathogen#infect()
