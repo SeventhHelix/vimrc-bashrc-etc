@@ -110,6 +110,10 @@ set undolevels=500
 
 " }}}
 
+"{{{Filetype specific Settings
+autocmd FileType tex setlocal shiftwidth=8 tabstop=8
+"}}}
+
 "{{{Look and Feel
 
 "Status line gnarliness
