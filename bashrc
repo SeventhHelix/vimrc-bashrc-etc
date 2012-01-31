@@ -122,6 +122,7 @@ alias network-manager-to-wicd='sudo service network-manager stop; sudo service w
 alias g++='g++ -Wall'
 alias acro="acroread"
 alias rm='rm -vI'
+alias gp="git pull origin master"
 
 # Strombola sound effects
 alias runcoward="mplayer ~/Music/sfx/www.digitpress.com/run_cowd.wav"

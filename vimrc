@@ -212,9 +212,10 @@ let Tlist_Display_Prototype = 1 "display full prototype instead of just function
 " " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+"
+let g:Tex_DefaultTargetFormat = "pdf"
+let g:Tex_ViewRule_pdf = "kpdf"
 "}}}
 
-"let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_ViewRule_pdf = "kpdf"
 
 call pathogen#infect()
