@@ -3,8 +3,6 @@ filetype plugin on
 filetype indent on
 set grepprg="grep \ -nH\ $*" "Set for latex-vim
 
-"au BufNewFile,BufRead,BufEnter .c,.cc,.cpp,.C,.hpp,.h
-
 
 " configure tags - add additional tags here or comment out not-used ones
 set tags+=~/.vimtags
@@ -29,8 +27,6 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
-
-
 
 
 "{{{Misc Settings
@@ -85,6 +81,22 @@ set smartcase
 
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
+inoremap kj <Esc>
+inoremap JJ <Esc>
+inoremap KJ <Esc>
+
+" Typing [0] has always annoyed me...
+inoremap 00 [0]
+inoremap 11 [1]
+inoremap 22 [2]
+inoremap 33 [3]
+inoremap 44 [4]
+inoremap 55 [5]
+inoremap 66 [6]
+inoremap 77 [7]
+inoremap 88 [8]
+inoremap 99 [9]
+inoremap ii [i]
 
 " Incremental searching is sexy
 set incsearch
@@ -175,21 +187,30 @@ map n nzz
 
 " Swap ; and :  Convenient.
 nnoremap ; :
-nnoremap : ;
+"nnoremap : ;
 
 " Fix email paragraphs
 nnoremap <leader>par :%s/^>$//<CR>
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap  <right> <nop>
-inoremap  <left> <nop>
-inoremap  <down> <nop>
-inoremap  <up> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap  <right> <nop>
+"inoremap  <left> <nop>
+"inoremap  <down> <nop>
+"inoremap  <up> <nop>
 
+" CTRL-A Switches between .h and .{c,C,cpp}
 nnoremap <C-a> :A<CR> 
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" Make Y behave like other capitals
+map Y y$
+
 
 "}}}
 
@@ -215,6 +236,16 @@ let g:tex_flavor='latex'
 "
 let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_ViewRule_pdf = "kpdf"
+"}}}
+
+
+"{{{Scroll Color stuff
+
+" to use: type :SCROLL
+
+map <silent><F5> :NEXTCOLOR<cr>
+map <silent><F4> :PREVCOLOR<cr>
+
 "}}}
 
 

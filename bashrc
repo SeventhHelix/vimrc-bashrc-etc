@@ -103,12 +103,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #ssh aliases
-alias taurine='ssh j6dyck@taurine.csclub.uwaterloo.ca'
-alias cornsyrup='ssh j6dyck@corn-syrup.csclub.uwaterloo.ca' 
-alias caffeine='ssh j6dyck@caffeine.csclub.uwaterloo.ca'
-alias strombola='ssh j6dyck@strombola.csclub.uwaterloo.ca'
-alias csclub='ssh j6dyck@csclub.uwaterloo.ca'
-alias linuxstudent='ssh j6dyck@linux.student.cs.uwaterloo.ca'
+alias taurine='ssh -XYC j6dyck@taurine.csclub.uwaterloo.ca'
+alias cornsyrup='ssh -XYC j6dyck@corn-syrup.csclub.uwaterloo.ca' 
+alias caffeine='ssh -XYC j6dyck@caffeine.csclub.uwaterloo.ca'
+alias strombola='ssh -XYC j6dyck@strombola.csclub.uwaterloo.ca'
+alias csclub='ssh -XYC j6dyck@csclub.uwaterloo.ca'
+alias linuxstudent='ssh -XYC j6dyck@linux.student.cs.uwaterloo.ca'
 
 #cd aliases
 alias cdu='cd ~/Documents/University/Term_2B/'
@@ -122,7 +122,8 @@ alias network-manager-to-wicd='sudo service network-manager stop; sudo service w
 alias g++='g++ -Wall'
 alias acro="acroread"
 alias rm='rm -vI'
-alias gp="git pull origin master"
+alias gpus="git push origin master"
+alias gpul="git pull origin master"
 
 # Strombola sound effects
 alias runcoward="mplayer ~/Music/sfx/www.digitpress.com/run_cowd.wav"
