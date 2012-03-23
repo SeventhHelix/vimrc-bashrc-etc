@@ -9,7 +9,7 @@
 set background=dark
 hi clear
 if exists("syntax_on")
-    syntax reset
+   syntax reset
 endif
 let colors_name = "no_quarter"
 
@@ -19,8 +19,8 @@ let colors_name = "no_quarter"
 
 hi Normal				guifg=grey90                        guibg=#303030
 
-hi Comment				gui=NONE		guifg=#1e90ff       guibg=NONE
-hi Constant				gui=NONE		guifg=#FF4500       guibg=NONE
+hi Comment				gui=NONE		guifg=#647bcf       guibg=NONE
+hi Constant				gui=NONE		guifg=#b07050       guibg=NONE
 hi Cursor				gui=NONE		guifg=#424242       guibg=green
 hi CursorIM				gui=NONE		guifg=#ffffff       guibg=#8800ff
 hi CursorLine           gui=NONE                            guibg=gray25
@@ -47,12 +47,12 @@ hi Search				gui=NONE		guifg=bg            guibg=grey60
 hi SignColumn           gui=NONE        guifg=darkyellow    guibg=bg
 hi Special				gui=NONE		guifg=#c090c0       guibg=NONE
 hi SpecialKey			gui=BOLD		guifg=green         guibg=NONE
-hi Statement			gui=NONE		guifg=#32cd32       guibg=NONE
+hi Statement			gui=NONE		guifg=#c0c090       guibg=NONE
 hi StatusLine			gui=NONE		guifg=#000000       guibg=#909090
 hi StatusLineNC			gui=NONE		guifg=#abac84       guibg=#404040
 hi Title				gui=NONE        guifg=darkcyan      guibg=bg
 hi Todo					gui=BOLD		guifg=#ff80d0       guibg=NONE
-hi Type					gui=NONE		guifg=#F0E68c       guibg=NONE
+hi Type					gui=NONE		guifg=#60f0a8       guibg=NONE
 hi Underlined			gui=UNDERLINE	guifg=#707070       guibg=NONE
 hi VertSplit			gui=NONE		guifg=#abac84       guibg=#404040
 hi Visual				gui=NONE		guifg=#b0ffb0       guibg=#008000

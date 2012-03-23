@@ -139,7 +139,8 @@ let themeindex=0
 function! RotateColorTheme()
    let y = -1
    while y == -1
-      let colorstring = "inkpot#ron#blue#elflord#evening#koehler#murphy#pablo#desert#torte#"
+      "let colorstring = "inkpot#ron#blue#elflord#evening#koehler#murphy#pablo#desert#torte#"
+      let colorstring = "herald_JeffCustom#inkpot#elflord#koehler#wombat256#desert#"
       let x = match( colorstring, "#", g:themeindex )
       let y = match( colorstring, "#", x + 1 )
       let g:themeindex = x + 1
@@ -165,6 +166,15 @@ nnoremap <silent> <C-h> :tabprev<CR>
 " New Tab
 " nnoremap <silent> <C-t> :tabnew<CR>
 " Conflicts with ctags
+
+
+" Split stuff
+set winminheight=0
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
 
 " Rotate Color Scheme <F8>
 nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
@@ -240,13 +250,18 @@ let g:Tex_ViewRule_pdf = "kpdf"
 
 
 "{{{Scroll Color stuff
-
-" to use: type :SCROLL
-
 map <silent><F5> :NEXTCOLOR<cr>
 map <silent><F4> :PREVCOLOR<cr>
-
 "}}}
 
 
+"no toolbar
+if has('gui_running')
+    set guioptions-=T 
+endif
+
+:let &t_Co=256
+colorscheme herald_JeffCustom
+
+highlight MatchParen ctermbg=4
 call pathogen#infect()

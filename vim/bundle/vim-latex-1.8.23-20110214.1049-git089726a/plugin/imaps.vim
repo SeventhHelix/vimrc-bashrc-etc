@@ -68,7 +68,8 @@
 " text is decided by the position of the first "place-holder". Place holders
 " are special characters which decide cursor placement and movement. In the
 " example above, the place holder characters are <+ and +>. After you have typed
-" in the item, press <C-j> and you will be taken to the next set of <++>'s.
+" in the item, press <C-e> (Jeff: Default is <C-j>, remapped due to conflicts
+" with window split keybinds) and you will be taken to the next set of <++>'s.
 " Therefore by placing the <++> characters appropriately, you can minimize the
 " use of movement keys.
 "
@@ -484,18 +485,22 @@ vmap <silent> <Plug>IMAP_JumpBack          <C-\><C-N>`<i<c-r>=IMAP_Jumpfunc('b',
 "       provided. It is assumed that if the user will create such mappings
 "       hself if e so desires.
 if !hasmapto('<Plug>IMAP_JumpForward', 'i')
-    imap <C-J> <Plug>IMAP_JumpForward
+    "imap <C-J> <Plug>IMAP_JumpForward
+    imap <C-e> <Plug>IMAP_JumpForward
 endif
 if !hasmapto('<Plug>IMAP_JumpForward', 'n')
-    nmap <C-J> <Plug>IMAP_JumpForward
+    "nmap <C-J> <Plug>IMAP_JumpForward
+    nmap <C-e> <Plug>IMAP_JumpForward
 endif
 if exists('g:Imap_StickyPlaceHolders') && g:Imap_StickyPlaceHolders
 	if !hasmapto('<Plug>IMAP_JumpForward', 'v')
-		vmap <C-J> <Plug>IMAP_JumpForward
+		"vmap <C-J> <Plug>IMAP_JumpForward
+		vmap <C-e> <Plug>IMAP_JumpForward
 	endif
 else
 	if !hasmapto('<Plug>IMAP_DeleteAndJumpForward', 'v')
-		vmap <C-J> <Plug>IMAP_DeleteAndJumpForward
+		"vmap <C-J> <Plug>IMAP_DeleteAndJumpForward
+		vmap <C-e> <Plug>IMAP_DeleteAndJumpForward
 	endif
 endif
 " }}}
@@ -512,7 +517,11 @@ nmap <silent> <script> <plug><+SelectRegion+> `<v`>
 function! VEnclose(vstart, vend, VStart, VEnd)
 
 	" its characterwise if
-	" 1. characterwise selection and valid values for vstart and vend.
+	" 1. characterwise selection and valid values for vstarnnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+t and vend.
 	" OR
 	" 2. linewise selection and invalid values for VStart and VEnd
 	if (visualmode() ==# 'v' && (a:vstart != '' || a:vend != '')) || (a:VStart == '' && a:VEnd == '')
