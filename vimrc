@@ -5,7 +5,7 @@ set grepprg="grep \ -nH\ $*" "Set for latex-vim
 
 
 " configure tags - add additional tags here or comment out not-used ones
-set tags+=~/.vimtags
+"set tags+=~/.vimtags
 "set tags+=~/.vim/tags/cpp
 "set tags+=~/.vim/tags/gl
 "set tags+=~/.vim/tags/sdl
@@ -15,18 +15,21 @@ set tags+=~/.vimtags
 " map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+"let OmniCpp_NamespaceSearch = 1
+"let OmniCpp_GlobalScopeSearch = 1
+"let OmniCpp_ShowAccess = 1
+"let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+"let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+"let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+
+
 
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+"set completeopt=menuone,menu,longest,preview
 
 
 "{{{Misc Settings
@@ -38,7 +41,12 @@ set nocompatible
 set showcmd
 
 " Folding Stuffs
+"set foldmethod=syntax
+"set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+"set foldcolumn=4
 set foldmethod=marker
+set foldmarker={,}
+set foldlevelstart=1
 
 " Needed for Syntax Highlighting and stuff
 filetype on
@@ -128,7 +136,7 @@ autocmd FileType tex setlocal shiftwidth=8 tabstop=8
 
 "{{{Look and Feel
 
-"Status line gnarliness
+"Status line
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
@@ -257,11 +265,12 @@ map <silent><F4> :PREVCOLOR<cr>
 
 "no toolbar
 if has('gui_running')
-    set guioptions-=T 
+    "set guioptions-=T 
 endif
 
 :let &t_Co=256
 colorscheme herald_JeffCustom
 
-highlight MatchParen ctermbg=4
+:set cursorline
+
 call pathogen#infect()

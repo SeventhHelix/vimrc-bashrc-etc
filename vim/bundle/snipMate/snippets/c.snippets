@@ -60,13 +60,14 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for (${2:int i} = 0; $2 < ${1:count}; $2${3:++}) {
-		${4:/* code */}
+	for (${1};  ${2} < ${3}; ${4}) {
+		${5:/* code */}
 	}
 # Custom For Loop
 snippet forr
-	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
-		${5:/* code */}
+	for (${1};  ${2} < ${3} ; ${4}) {
+	    for (${5};  ${6} < ${7} ; ${8}) {
+		${9:/* code */}
 	}
 # Function
 snippet fun
@@ -81,9 +82,9 @@ snippet td
 	typedef ${1:int} ${2:MyCustomType};${3}
 # Struct
 snippet st
-	struct ${1:`Filename('$1_t', 'name')`} {
+	struct ${1:name} {
 		${2:/* data */}
-	}${3: /* optional variable list */};${4}
+	};
 # Typedef struct
 snippet tds
 	typedef struct ${2:_$1 }{
@@ -100,7 +101,7 @@ snippet tde
 snippet pr
 	printf("${1:%s}\n"${2});${3}
 # cout 
-snippet cout
+snippet cou
 	cout << ${1} << endl;${2}
 # fprintf (again, this isn't as nice as TextMate's version, but it works)
 snippet fpr

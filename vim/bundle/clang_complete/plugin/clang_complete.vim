@@ -19,7 +19,10 @@ let s:plugin_path = escape(expand('<sfile>:p:h'), '\')
 
 function! s:ClangCompleteInit()
   if !exists('g:clang_auto_select')
-    let g:clang_auto_select = 0
+    " 0 - No default menu selection
+    " 1 - Select first item but do not insert
+    " 2 - Select first item and insert
+    let g:clang_auto_select = 1
   endif
 
   if !exists('g:clang_complete_auto')
@@ -46,6 +49,7 @@ function! s:ClangCompleteInit()
 
   if !exists('g:clang_snippets_engine')
     let g:clang_snippets_engine = 'clang_complete'
+    "let g:clang_snippets_engine = 'snipmate'
   endif
 
   if !exists('g:clang_exec')

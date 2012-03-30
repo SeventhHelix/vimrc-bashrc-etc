@@ -154,7 +154,7 @@ if !exists('loaded_taglist')
 
     " Vertically split taglist window width setting
     if !exists('Tlist_WinWidth')
-        let Tlist_WinWidth = 30
+        let Tlist_WinWidth = 50
     endif
 
     " Horizontally split taglist window height setting
@@ -164,7 +164,7 @@ if !exists('loaded_taglist')
 
     " Display tag prototypes or tag names in the taglist window
     if !exists('Tlist_Display_Prototype')
-        let Tlist_Display_Prototype = 0
+        let Tlist_Display_Prototype = 1
     endif
 
     " Display tag scopes in the taglist window

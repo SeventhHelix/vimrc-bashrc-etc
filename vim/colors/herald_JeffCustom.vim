@@ -386,7 +386,7 @@ hi! default link bbcodeUnderline htmlUnderline
 if has("spell")
 
         " SpellBad: Error color
-	hi SpellBad   ctermbg=196   ctermfg=0       guisp=#FC4234 gui=undercurl
+	hi SpellBad   ctermbg=253   ctermfg=160       guisp=#FC4234 gui=undercurl
 	hi SpellCap   guisp=#70BDF1 gui=undercurl
 	hi SpellLocal guisp=#FFEE68 gui=undercurl
 	hi SpellRare  guisp=#6DF584 gui=undercurl
