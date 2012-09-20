@@ -51,7 +51,9 @@ myWorkspaces = ["1:","2:","3:","4:","5:","6:","7:","8:","9:"]
 myManageHook = composeAll
     [ className =? "Firefox"          --> doShift "9:"
 --    , className =? "Gimp"           --> doFloat
---    , className =? "Google-chrome"  --> doShift "2:web"
+      , className =? "chromium-browser"  --> doShift "9:"
+      , className =? "Chromium"  --> doShift "9:"
+      , className =? "Google Chrome"  --> doShift "9:"
 --    , resource  =? "gpicview"       --> doFloat
 --    , resource  =? "kdesktop"       --> doIgnore
 --    , className =? "MPlayer"        --> doFloat
@@ -142,7 +144,7 @@ myModMask = mod1Mask
 -- Set numlockMask = 0 if you don't have a numlock key, or want to treat
 -- numlock status separately.
 --
-myNumlockMask = mod2Mask
+--myNumlockMask = mod2Mask
  
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
@@ -375,7 +377,7 @@ defaults = defaultConfig {
     focusFollowsMouse  = myFocusFollowsMouse,
     borderWidth        = myBorderWidth,
     modMask            = myModMask,
-    numlockMask        = myNumlockMask,
+    --numlockMask        = myNumlockMask,
     workspaces         = myWorkspaces,
     normalBorderColor  = myNormalBorderColor,
     focusedBorderColor = myFocusedBorderColor,

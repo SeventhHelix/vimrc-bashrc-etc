@@ -51,11 +51,18 @@ set foldlevelstart=1
 " Needed for Syntax Highlighting and stuff
 filetype on
 filetype plugin on
+filetype plugin indent on
 syntax enable
+syntax on
 set grepprg=grep\ -nH\ $*
 
 " Who doesn't like autoindent?
 set autoindent
+
+" Don't let smartindent push '#' to column 0
+" Weird issue - actually inserts the X^H# instead of just the hash
+"inoremap # X^H#
+
 
 " Spaces are better than a tab character
 set expandtab
@@ -117,10 +124,6 @@ set nohidden
 
 " Set off the other paren
 highlight MatchParen ctermbg=4
-
-
-filetype plugin indent on
-syntax on
 
 set scrolloff=5 "Scrolling starts 5 lines before window border
 
@@ -207,18 +210,6 @@ map n nzz
 nnoremap ; :
 "nnoremap : ;
 
-" Fix email paragraphs
-nnoremap <leader>par :%s/^>$//<CR>
-
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap  <right> <nop>
-"inoremap  <left> <nop>
-"inoremap  <down> <nop>
-"inoremap  <up> <nop>
-
 " CTRL-A Switches between .h and .{c,C,cpp}
 nnoremap <C-a> :A<CR> 
 
@@ -268,6 +259,7 @@ if has('gui_running')
     "set guioptions-=T 
 endif
 
+" This may cause a weird blinking VIM bug on certain terminals
 :let &t_Co=256
 colorscheme herald_JeffCustom
 

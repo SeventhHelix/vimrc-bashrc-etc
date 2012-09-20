@@ -1,5 +1,29 @@
+# Title and misc
+snippet title
+	\documentclass[10pt,a4paper,final]{article}
+	\usepackage[latin1]{inputenc}
+	\usepackage{amsmath}
+	\usepackage{amsfonts}
+	\usepackage{amssymb}
+	\usepackage{multicol}
+	\title{${1}}
+	\author{Jeff Dyck}
+	\begin{document}
+	\maketitle
+	\pagebreak
+	%
+	%
+	%
+	${2}
+	%
+	%
+	%
+	\end{document}
+# Fraction
+snippet frac
+	\frac{${1}}{${2}}
 # \begin{}...\end{}
-snippet begin
+snippet beg
 	\begin{${1:env}}
 		${2}
 	\end{$1}
@@ -24,10 +48,15 @@ snippet eq
 		${1}
 	\end{equation}
 # Unnumbered Equation
-snippet \
-	\\[
+snippet eq*
+	\begin{equation*}
 		${1}
-	\\]
+	\end{equation*}
+# Equation Array
+snippet eqnar
+	\begin{eqnarray*}
+		${1}
+	\end{eqnarray*}
 # Enumerate
 snippet enum
 	\begin{enumerate}

@@ -177,7 +177,7 @@ elseif &t_Co == 256
 	hi Identifier     ctermbg=234  ctermfg=75    cterm=none
 	hi Function       ctermbg=234  ctermfg=117   cterm=none
 	hi Ignore         ctermbg=234  ctermfg=234   cterm=none
-	hi MatchParen     ctermbg=214  ctermfg=238   cterm=none
+	hi MatchParen     ctermbg=214  ctermfg=238   cterm=bold ctermbg=NONE
 	hi PreProc        ctermbg=234  ctermfg=141   cterm=none
 	hi Special        ctermbg=234  ctermfg=227   cterm=none
 	hi Todo           ctermbg=234  ctermfg=203   cterm=bold
@@ -410,5 +410,13 @@ hi PmenuThumb			guifg=grey30
 "
 
 hi rightMargin          guibg=#453030
+
+" Misc over-writes by Jeff
+
+"highlight MatchParen gui=bold guibg=#cfbfaf guifg=#666666 cterm=bold ctermbg=NONE
+"highlight MatchParen gui=bold guibg=NONE guifg=lightblue cterm=bold ctermbg=NONE
+
+
+
 
 " EOF

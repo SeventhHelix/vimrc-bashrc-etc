@@ -8,8 +8,8 @@ cp ~/.bashrc bashrc
 
 cp ~/.Xdefaults Xdefaults 
 
-#cp ~/.xmonad/xmobar.hs xmobar.hs
+cp ~/.xmonad/xmobar.hs xmobar.hs
 
-#cp ~/.xmonad/xmonad.hs xmonad.hs 
+cp ~/.xmonad/xmonad.hs xmonad.hs 
 
 cp -r ~/.vim/* ./vim

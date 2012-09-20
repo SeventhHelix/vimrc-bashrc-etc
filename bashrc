@@ -4,6 +4,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Remind the user we're in bash
+#echo --- EXEC BASH ---
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -65,6 +68,7 @@ xterm*|rxvt*)
 esac
 
 # some more ls aliases
+alias ls='ls --color=auto'
 alias ll='ls -alF --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
@@ -79,7 +83,7 @@ alias csclub='ssh -XYC j6dyck@csclub.uwaterloo.ca'
 alias linuxstudent='ssh -XYC j6dyck@linux.student.cs.uwaterloo.ca'
 
 #cd aliases
-alias cdu='cd ~/Documents/University/Term_2B/'
+alias cdu='cd ~/Documents/University/Term_3A/'
 
 #misc aliases
 alias s='screen -rd'
@@ -87,20 +91,28 @@ alias gitfiles='git log --pretty=format: --name-status | cut -f2- | sort -u'
 alias vim='vim -p'
 alias logout-gnome='gnome-session-save --force-logout'
 alias network-manager-to-wicd='sudo service network-manager stop; sudo service wicd start; sudo wicd-curses'
-alias g++='g++ -Wall'
 alias acro="acroread"
 alias rm='rm -vI'
-alias gpus="git push origin master"
-alias gpul="git pull origin master"
+alias gpush="git push origin master"
+alias gpull="git pull origin master"
 alias mkdir="mkdir -p"
 
 # Strombola sound effects
-alias runcoward="mplayer ~/Music/sfx/www.digitpress.com/run_cowd.wav"
-alias pacdie="mplayer ~/Music/sfx/www.digitpress.com/pacdies.wav"
-alias win="mplayer ~/Music/sfx/www.digitpress.com/win.wav"
+#alias runcoward="mplayer ~/Music/sfx/www.digitpress.com/run_cowd.wav"
+#alias pacdie="mplayer ~/Music/sfx/www.digitpress.com/pacdies.wav"
+#alias win="mplayer ~/Music/sfx/www.digitpress.com/win.wav"
 
 
 # Add stuff to path
 export PATH=$PATH:/usr/local/include:~/Scripts
 export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
+export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
+
+# Fix for chrome bug
+rm ~/.config/chromium/SingletonLock > /dev/null
+
+# CS350 stuff
+CVSROOT=~/cvsroot/cs350
+export CVSROOT
+alias cdos="cd ~/cs350-os161/"
 
