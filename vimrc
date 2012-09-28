@@ -1,9 +1,8 @@
 set nocp
 filetype plugin on
 filetype indent on
-set grepprg="grep \ -nH\ $*" "Set for latex-vim
 
-
+"{{{ Old Tags Stuff
 " configure tags - add additional tags here or comment out not-used ones
 "set tags+=~/.vimtags
 "set tags+=~/.vim/tags/cpp
@@ -23,8 +22,7 @@ set grepprg="grep \ -nH\ $*" "Set for latex-vim
 "let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 "let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 "let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
-
+"}}}
 
 
 " automatically open and close the popup menu / preview window
@@ -46,7 +44,7 @@ set showcmd
 "set foldcolumn=4
 set foldmethod=marker
 set foldmarker={,}
-set foldlevelstart=1
+set foldlevelstart=10
 
 " Needed for Syntax Highlighting and stuff
 filetype on
@@ -58,11 +56,6 @@ set grepprg=grep\ -nH\ $*
 
 " Who doesn't like autoindent?
 set autoindent
-
-" Don't let smartindent push '#' to column 0
-" Weird issue - actually inserts the X^H# instead of just the hash
-"inoremap # X^H#
-
 
 " Spaces are better than a tab character
 set expandtab
@@ -181,14 +174,10 @@ nnoremap <silent> <C-h> :tabprev<CR>
 
 " Split stuff
 set winminheight=0
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
 
 
-" Rotate Color Scheme <F8>
-nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
+" Rotate Color Scheme <F7>
+nnoremap <silent> <F7> :execute RotateColorTheme()<CR>
 
 " Up and down are more logical with g..
 nnoremap <silent> k gk
@@ -210,9 +199,6 @@ map n nzz
 nnoremap ; :
 "nnoremap : ;
 
-" CTRL-A Switches between .h and .{c,C,cpp}
-nnoremap <C-a> :A<CR> 
-
 " Reselect visual block after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
@@ -223,29 +209,7 @@ map Y y$
 
 "}}}
 
-"{{{Taglist configuration
-nnoremap <F2> :TlistToggle<CR>
 
-let Tlist_Close_On_Select = 1 "close taglist window once we selected something
-let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
-let Tlist_Show_Menu = 1 "show Tags menu in gvim
-let Tlist_Show_One_File = 1 "show tags of only one file
-let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
-let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
-"let Tlist_Process_File_Always = 1 "even without taglist window, create tags file, required for displaying tag in statusline
-let Tlist_Use_Right_Window = 1 "display taglist window on the right
-let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
-"}}}
-
-"{{{Vim LaTeX stuff
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-"
-let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_ViewRule_pdf = "kpdf"
-"}}}
 
 
 "{{{Scroll Color stuff
@@ -253,16 +217,63 @@ map <silent><F5> :NEXTCOLOR<cr>
 map <silent><F4> :PREVCOLOR<cr>
 "}}}
 
+:set cursorline
 
-"no toolbar
-if has('gui_running')
-    "set guioptions-=T 
-endif
+" Switched to vundle
+"call pathogen#infect()
 
+"{{{ Vundle Code
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+"Github bundles:
+Bundle 'xolox/vim-easytags'
+Bundle 'ervandew/supertab'
+
+
+
+" vim-scripts repos
+Bundle 'a.vim'
+    " CTRL-A Switches between .h and .{c,C,cpp}
+    nnoremap <C-a> :A<CR> 
+
+Bundle 'c.vim'
+Bundle 'ScrollColors'
+Bundle 'snipMate'
+Bundle 'taglist.vim'
+    "{{{Taglist configuration
+    nnoremap <F2> :TlistToggle<CR>
+        let Tlist_Use_Right_Window = 1 " Open taglist on the right side
+        let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
+        let Tlist_Show_Menu = 1 "show Tags menu in gvim
+        let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
+        let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
+        let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
+    "}}}
+
+Bundle 'The-NERD-tree'
+    nnoremap <F3> :NERDTreeToggle<CR>
+    let g:NERDTreeWinSize = 20
+
+Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
+    "{{{Vim LaTeX stuff
+    set grepprg="grep \ -nH\ $*" "Set for latex-vim
+    " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+    " " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+    " " The following changes the default filetype back to 'tex':
+    let g:tex_flavor='latex'
+    "
+    let g:Tex_DefaultTargetFormat = "pdf"
+    let g:Tex_ViewRule_pdf = "kpdf"
+    "}}}
+
+
+"}}}
+
+filetype on
 " This may cause a weird blinking VIM bug on certain terminals
 :let &t_Co=256
 colorscheme herald_JeffCustom
-
-:set cursorline
-
-call pathogen#infect()
