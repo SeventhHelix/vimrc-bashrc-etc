@@ -115,4 +115,5 @@ rm ~/.config/chromium/SingletonLock > /dev/null
 CVSROOT=~/cvsroot/cs350
 export CVSROOT
 alias cdos="cd ~/cs350-os161/"
+alias cdosos="cd ~/cs350-os161/os161-1.11"
 
