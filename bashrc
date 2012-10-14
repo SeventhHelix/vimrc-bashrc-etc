@@ -104,8 +104,14 @@ alias mkdir="mkdir -p"
 
 
 # Add stuff to path
-export PATH=$PATH:/usr/local/include:~/Scripts
-export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
+export PATH=$PATH:/usr/local/include
+export PATH=$PATH:~/usr/lib
+export PATH=$PATH:~/usr/bin
+export PATH=$PATH:~/Scripts
+
+export PATH=$PATH:~/.cabal/bin
+export PATH=$PATH:~/.xmonad/bin
+
 export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
 
 # Fix for chrome bug

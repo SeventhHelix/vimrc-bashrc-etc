@@ -11,6 +11,9 @@ cp bashrc ~/.bashrc
 mv ~/.Xdefaults ~/.Xdefaults.bak
 cp Xdefaults ~/.Xdefaults
 
+mv ~/.config/sublime-text-2/Packages ~/.config/sublime-text-2/Packages.old
+cp SublimePackages ~/.config/sublime-text-2/Packages
+
 #mv ~/.xmonad/xmobar.hs ~/.xmonad/xmobar.hs.bak
 #cp xmobar.hs ~/.xmonad/xmobar.hs
 

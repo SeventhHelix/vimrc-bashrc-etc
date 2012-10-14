@@ -1,0 +1,17 @@
+[
+	// Vintage
+	{ "keys": ["j", "j"], "command": "exit_insert_mode",
+	    "context":
+	    [
+	        { "key": "setting.command_mode", "operand": false },
+	        { "key": "setting.is_widget", "operand": false }
+	    ]
+	},
+
+	{ "keys": [";"], "command": "show_overlay", "args": {"overlay": "command_palette", "text": ":"},
+		"context": 
+		[
+			{"key": "setting.command_mode"}
+		]
+	}
+]

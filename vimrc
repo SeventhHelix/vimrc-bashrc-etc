@@ -93,17 +93,7 @@ inoremap kj <Esc>
 inoremap JJ <Esc>
 inoremap KJ <Esc>
 
-" Typing [0] has always annoyed me...
-inoremap 00 [0]
-inoremap 11 [1]
-inoremap 22 [2]
-inoremap 33 [3]
-inoremap 44 [4]
-inoremap 55 [5]
-inoremap 66 [6]
-inoremap 77 [7]
-inoremap 88 [8]
-inoremap 99 [9]
+" Typing [i] has always annoyed me...
 inoremap ii [i]
 
 " Incremental searching is sexy
@@ -281,6 +271,7 @@ Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
 "}}}
 
 filetype on
+
 " This may cause a weird blinking VIM bug on certain terminals
 :let &t_Co=256
 colorscheme herald_JeffCustom
