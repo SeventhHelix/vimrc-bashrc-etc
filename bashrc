@@ -4,6 +4,20 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Go to zsh if not on macs and not in zsh already
+# chsh does not work properly for some reason
+# And opening zsh on macs is VERY slow
+# Note: I don't think this actually works.
+OS=`uname`
+LINUX="Linux"
+if [ "$OS" -eq "$LINUX" ]
+then
+    if [ $MYSHELL -ne "zsh" ]
+    then
+        zsh
+    fi
+fi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -41,53 +55,12 @@ xterm*|rxvt*)
     ;;
 esac
 
-# some more ls aliases
-alias ls='ls --color=auto'
-alias ll='ls -alhF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
-alias cls='clear; ls --color=auto'
+# Aliases
+source ~/.aliases
 
-#ssh aliases
-alias taurine='ssh -XYC j6dyck@taurine.csclub.uwaterloo.ca'
-alias cornsyrup='ssh -XYC j6dyck@corn-syrup.csclub.uwaterloo.ca' 
-alias caffeine='ssh -XYC j6dyck@caffeine.csclub.uwaterloo.ca'
-alias strombola='ssh -XYC j6dyck@strombola.csclub.uwaterloo.ca'
-alias csclub='ssh -XYC j6dyck@csclub.uwaterloo.ca'
-alias linuxstudent='ssh -XYC j6dyck@linux.student.cs.uwaterloo.ca'
-
-#cd aliases
-alias cdu='cd ~/Documents/University/Term_3A/'
-
-#misc aliases
-alias s='screen -rd'
-alias gitfiles='git log --pretty=format: --name-status | cut -f2- | sort -u'
-alias vim='vim -p'
-alias logout-gnome='gnome-session-save --force-logout'
-alias network-manager-to-wicd='sudo service network-manager stop; sudo service wicd start; sudo wicd-curses'
-alias acro="acroread"
-alias rm='rm -vI'
-alias gpush="git push origin master"
-alias gpull="git pull origin master"
-alias mkdir="mkdir -p"
-
-# Add stuff to path
-export PATH=$PATH:/usr/local/include
-export PATH=$PATH:~/usr/lib
-export PATH=$PATH:~/usr/bin
-export PATH=$PATH:~/Scripts
-
-export PATH=$PATH:~/.cabal/bin
-export PATH=$PATH:~/.xmonad/bin
-
-export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
-
-# Fix for chrome bug
-rm ~/.config/chromium/SingletonLock > /dev/null
-
-# CS350 stuff
 CVSROOT=~/cvsroot/cs350
 export CVSROOT
-alias cdos="cd ~/cs350-os161/"
-alias cdosos="cd ~/cs350-os161/os161-1.11"
+export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
 
+MYSHELL="BASH"
+export MYSHELL

@@ -1,0 +1,53 @@
+# ls aliases
+alias ls='ls --color=auto'
+alias ll='ls -alhF --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
+alias cls='clear; ls --color=auto'
+
+#ssh aliases
+alias taurine='ssh -XYC j6dyck@taurine.csclub.uwaterloo.ca'
+alias cornsyrup='ssh -XYC j6dyck@corn-syrup.csclub.uwaterloo.ca' 
+alias caffeine='ssh -XYC j6dyck@caffeine.csclub.uwaterloo.ca'
+alias strombola='ssh -XYC j6dyck@strombola.csclub.uwaterloo.ca'
+alias csclub='ssh -XYC j6dyck@csclub.uwaterloo.ca'
+alias linuxstudent='ssh -XYC j6dyck@linux.student.cs.uwaterloo.ca'
+alias lin32='ssh -XYC j6dyck@linux032.student.cs.uwaterloo.ca'
+alias lin24='ssh -XYC j6dyck@linux024.student.cs.uwaterloo.ca'
+
+#cd aliases
+alias cdu='cd ~/Documents/University/Term_3A/'
+
+#misc aliases
+alias s='screen -rd'
+alias gitfiles='git log --pretty=format: --name-status | cut -f2- | sort -u'
+alias vim='vim -p'
+alias logout-gnome='gnome-session-save --force-logout'
+alias network-manager-to-wicd='sudo service network-manager stop; sudo service wicd start; sudo wicd-curses'
+alias acro="acroread"
+alias rm='rm -vI'
+alias mkdir="mkdir -p"
+
+# Add stuff to path
+export PATH=$PATH:/usr/local/include
+export PATH=$PATH:~/usr/lib
+export PATH=$PATH:~/usr/bin
+export PATH=$PATH:~/Scripts
+
+export PATH=$PATH:~/.cabal/bin
+export PATH=$PATH:~/.xmonad/bin
+
+# Fix for chrome bug
+rm ~/.config/chromium/SingletonLock > /dev/null
+
+# CS350 stuff
+CVSROOT=~/cvsroot/cs350
+export CVSROOT
+export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
+alias cdos="cd ~/cs350-os161/"
+alias cdosr="cd ~/cs350-os161/root/"
+alias rk="cdosr; sys161 kernel"
+alias bk="cdos; ./buildKernel.sh 3"
+alias brk="cdos; ./buildKernel.sh 3; cdosr; sys161 kernel"
+alias cdosos="cd ~/cs350-os161/os161-1.11"
+alias rt="cdos; bk; cd a3-test-scripts; make runtests"
