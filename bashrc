@@ -4,20 +4,6 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# Go to zsh if not on macs and not in zsh already
-# chsh does not work properly for some reason
-# And opening zsh on macs is VERY slow
-# Note: I don't think this actually works.
-OS=`uname`
-LINUX="Linux"
-if [ "$OS" -eq "$LINUX" ]
-then
-    if [ $MYSHELL -ne "zsh" ]
-    then
-        zsh
-    fi
-fi
-
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -58,9 +44,14 @@ esac
 # Aliases
 source ~/.aliases
 
+# CS350 stuff
 CVSROOT=~/cvsroot/cs350
 export CVSROOT
 export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
 
+# CS348 stuff
+. ~cs348/public/db2profile
+
 MYSHELL="BASH"
 export MYSHELL
+

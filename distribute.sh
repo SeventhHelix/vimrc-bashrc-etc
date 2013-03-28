@@ -8,6 +8,9 @@ cp vimrc ~/.vimrc
 mv ~/.bashrc ~/.bashrc.bak
 cp bashrc ~/.bashrc
 
+mv ~/.aliases ~/.aliases.bak
+cp aliases ~/.aliases
+
 mv ~/.Xdefaults ~/.Xdefaults.bak
 cp Xdefaults ~/.Xdefaults
 
@@ -17,4 +20,4 @@ cp Xdefaults ~/.Xdefaults
 #mv ~/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs.bak
 #cp xmonad.hs ~/.xmonad/xmonad.hs
 
-cp -r vim/* ~/.vim/
+#cp -r vim/* ~/.vim/

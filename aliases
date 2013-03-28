@@ -13,7 +13,9 @@ alias strombola='ssh -XYC j6dyck@strombola.csclub.uwaterloo.ca'
 alias csclub='ssh -XYC j6dyck@csclub.uwaterloo.ca'
 alias linuxstudent='ssh -XYC j6dyck@linux.student.cs.uwaterloo.ca'
 alias lin32='ssh -XYC j6dyck@linux032.student.cs.uwaterloo.ca'
+alias lin28='ssh -XYC j6dyck@linux028.student.cs.uwaterloo.ca'
 alias lin24='ssh -XYC j6dyck@linux024.student.cs.uwaterloo.ca'
+alias playCrawl='ssh -C -l crawl crawl.s-z.org'
 
 #cd aliases
 alias cdu='cd ~/Documents/University/Term_3A/'
@@ -33,6 +35,9 @@ export PATH=$PATH:/usr/local/include
 export PATH=$PATH:~/usr/lib
 export PATH=$PATH:~/usr/bin
 export PATH=$PATH:~/Scripts
+export PATH=$PATH:~/Utils
+export PATH=$PATH:~/Utils/ncdu-1.9/
+
 
 export PATH=$PATH:~/.cabal/bin
 export PATH=$PATH:~/.xmonad/bin

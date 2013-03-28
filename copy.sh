@@ -8,6 +8,9 @@ cp ~/.vimrc vimrc
 echo Copying bashrc
 cp ~/.bashrc bashrc 
 
+echo Copying alises
+cp ~/.aliases aliases
+
 echo Copying Xdefaults
 cp ~/.Xdefaults Xdefaults 
 

@@ -213,6 +213,14 @@ Bundle 'gmarik/vundle'
 
 "Github bundles:
 Bundle 'xolox/vim-easytags'
+Bundle 'Rip-Rip/clang_complete'
+    " Complete options (disable preview scratch window, longest removed to aways show menu)
+    set completeopt=menu,menuone
+
+    " Limit popup menu height
+    set pumheight=20
+
+
 Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = '<c-p>'
@@ -221,6 +229,7 @@ Bundle 'kien/ctrlp.vim'
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
     let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 
 
 
