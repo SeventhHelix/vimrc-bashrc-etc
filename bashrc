@@ -45,12 +45,19 @@ esac
 source ~/.aliases
 
 # CS350 stuff
-CVSROOT=~/cvsroot/cs350
-export CVSROOT
-export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
+#CVSROOT=~/cvsroot/cs350
+#export CVSROOT
+#export PATH=$PATH:/u/cs350/sys161/bin:/u/cs350/bin:/software/.admin/bins/bin:/bin:/usr/bin:/usr/bin/X11
+
 
 # CS348 stuff
-. ~cs348/public/db2profile
+#. ~cs348/public/db2profile
+
+# CS488 Stuff
+export PATH=$PATH:/u/gr/cs488/bin
+
+export PATH=$PATH:$HOME/bin
+#export VIMRUNTIME=/usr/share/vim/vim72
 
 MYSHELL="BASH"
 export MYSHELL

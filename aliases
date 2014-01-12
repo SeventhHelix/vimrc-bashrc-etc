@@ -15,20 +15,39 @@ alias linuxstudent='ssh -XYC j6dyck@linux.student.cs.uwaterloo.ca'
 alias lin32='ssh -XYC j6dyck@linux032.student.cs.uwaterloo.ca'
 alias lin28='ssh -XYC j6dyck@linux028.student.cs.uwaterloo.ca'
 alias lin24='ssh -XYC j6dyck@linux024.student.cs.uwaterloo.ca'
+alias gl='ssh -XYC j6dyck@gl01.student.cs.uwaterloo.ca'
 alias playCrawl='ssh -C -l crawl crawl.s-z.org'
 
 #cd aliases
 alias cdu='cd ~/Documents/University/Term_3A/'
+alias cd88='cd ~/cs488/work/A1/src/'
+alias cdp='cd ~/cs488/work/project/src'
 
 #misc aliases
 alias s='screen -rd'
 alias gitfiles='git log --pretty=format: --name-status | cut -f2- | sort -u'
+#alias vim='~/vim/src/vim -p'
 alias vim='vim -p'
 alias logout-gnome='gnome-session-save --force-logout'
 alias network-manager-to-wicd='sudo service network-manager stop; sudo service wicd start; sudo wicd-curses'
 alias acro="acroread"
 alias rm='rm -vI'
 alias mkdir="mkdir -p"
+alias eclipse="~/eclipse/adt-bundle-linux-x86_64-20130219/eclipse/eclipse"
+
+#typo aliases
+alias kmake="make"
+alias jmake="make"
+alias jjmake="make"
+alias kkmake="make"
+alias makej="make"
+alias makek="make"
+alias makejj="make"
+alias makekk="make"
+
+# tar gz
+alias targz='tar -cvzf'
+alias untargz='tar -xvzf'
 
 # Add stuff to path
 export PATH=$PATH:/usr/local/include
@@ -56,3 +75,13 @@ alias bk="cdos; ./buildKernel.sh 3"
 alias brk="cdos; ./buildKernel.sh 3; cdosr; sys161 kernel"
 alias cdosos="cd ~/cs350-os161/os161-1.11"
 alias rt="cdos; bk; cd a3-test-scripts; make runtests"
+
+# imeant added
+# don't put anything after this section
+alias kjmake='make'
+alias cd..='cd ..'
+alias ake='make'
+alias im='vim'
+alias lmake='make'
+alias makr='make'
+alias makemake='make'
