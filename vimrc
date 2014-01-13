@@ -19,19 +19,16 @@ syntax enable
 syntax on
 set grepprg=grep\ -nH\ $*
 
-" Who doesn't like autoindent?
+" Set auto indent
 set autoindent
 
-" Spaces are better than a tab character
+" Use spaces instead of tabs
 set expandtab
 set smarttab
 
-" Who wants an 8 character tab?  Not me!
+" Set 4 character tabs/spaces
 set shiftwidth=4
 set softtabstop=4
-
-" Real men use gcc
-compiler gcc
 
 " Cool tab completion stuff
 set wildmenu
@@ -40,28 +37,17 @@ set wildmode=list:longest,full
 " Enable mouse support in console
 set mouse=a
 
-" Got backspace?
+" Fix backspaces to delete over linebreaks, automatic inserted indentation, etc
 set backspace=2
 
 " Line Numbers on
 set number
 
-" Ignoring case is a fun trick
+" Set cases for when searching
 set ignorecase
-
-" And so is Artificial Intellegence!
 set smartcase
 
-" Remap j and k mashing to escape 
-inoremap jj <Esc>
-inoremap kj <Esc>
-inoremap JJ <Esc>
-inoremap KJ <Esc>
-
-" Typing [i] has always annoyed me...
-inoremap ii [i]
-
-" Incremental searching is sexy
+" Incremental searching 
 set incsearch
 
 " Highlight things that we find with the search
@@ -80,10 +66,16 @@ set scrolloff=5
 set history=500
 set undolevels=500
 
+set nostartofline
+
 " }}}
 
 "{{{Filetype specific Settings
-autocmd FileType tex setlocal shiftwidth=4 tabstop=4
+
+" Make Python in Vim awesomer
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd BufRead *.py set nocindent
+autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 "}}}
 
 "{{{Look and Feel
@@ -95,6 +87,7 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 " }}}
 
 "{{{Theme Rotating
+" This is kind of useless, but is handy sometimes for testing new colour themes
 let themeindex=0
 function! RotateColorTheme()
    let y = -1
@@ -122,10 +115,6 @@ nnoremap <silent> <C-l> :tabnext<CR>
 
 " Previous Tab
 nnoremap <silent> <C-h> :tabprev<CR>
-
-" New Tab
-" nnoremap <silent> <C-t> :tabnew<CR>
-" Conflicts with ctags
 
 
 " Split stuff
@@ -199,10 +188,8 @@ map <silent><F5> :NEXTCOLOR<cr>
 map <silent><F4> :PREVCOLOR<cr>
 "}}}
 
+" Colour the current line you're on - is the : needed?
 :set cursorline
-
-" Switched to vundle
-"call pathogen#infect()
 
 "{{{ Vundle Code
 filetype off
@@ -220,16 +207,21 @@ Bundle 'Rip-Rip/clang_complete'
     " Limit popup menu height
     set pumheight=20
 
+Bundle 'Lokaltog/vim-easymotion'
+
+Bundle 'tpope/vim-surround'
 
 Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.d,*.pyc     " MacOSX/Linux
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
     let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
+
+Bundle 'klen/python-mode'
 
 
 
@@ -243,7 +235,7 @@ Bundle 'ScrollColors'
 Bundle 'snipMate'
 Bundle 'taglist.vim'
     "{{{Taglist configuration
-    nnoremap <F2> :TlistToggle<CR>
+    nnoremap <F3> :TlistToggle<CR>
         let Tlist_Use_Right_Window = 1 " Open taglist on the right side
         let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
         let Tlist_Show_Menu = 1 "show Tags menu in gvim
@@ -252,8 +244,12 @@ Bundle 'taglist.vim'
         let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
     "}}}
 
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+    let g:syntastic_python_checkers=['pylint']
+
 Bundle 'The-NERD-tree'
-    nnoremap <F3> :NERDTreeToggle<CR>
+    nnoremap <F2> :NERDTreeToggle<CR>
     let g:NERDTreeWinSize = 20
 
 Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
