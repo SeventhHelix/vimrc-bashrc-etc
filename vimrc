@@ -1,5 +1,8 @@
 "{{{Misc Settings
 
+" Set the python interpreter -- Neovim specific
+let g:python_host_prog = '/usr/bin/python2.7'
+
 " Necesary  for lots of cool vim things
 set nocompatible
 
@@ -30,9 +33,14 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 
+au BufRead,BufNewFile *.coffee set filetype=coffee
+autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
 " Cool tab completion stuff
 set wildmenu
 set wildmode=list:longest,full
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Enable mouse support in console
 set mouse=a
@@ -53,8 +61,7 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
-" When I close a tab, remove the buffer
-set nohidden
+set hidden
 
 " Set off the other paren
 highlight MatchParen ctermbg=4
@@ -68,12 +75,25 @@ set undolevels=500
 
 set nostartofline
 
+" Disable some bottom UI stuff since lightline already shows it
+set noshowmode
+
+" Disable jedi-vim from opening the help doc every time autocomplete is used
+autocmd FileType python setlocal completeopt-=preview
+
+" Type // in visual mode to search for selected text
+vnoremap // y/<C-R>"<CR>
+
+" F5 to insert current time
+inoremap <F5> <C-R>=strftime("%c")<CR>
+inoremap <F5> <C-R>=strftime("%c")<CR>
+
 " }}}
 
 "{{{Filetype specific Settings
 
 " Make Python in Vim awesomer
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+"autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufRead *.py set nocindent
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
 "}}}
@@ -110,11 +130,17 @@ endfunction
 
 "{{{ Mappings
 
+" Leader
+"let mapleader="\<SPACE>"
+
 " Next Tab
 nnoremap <silent> <C-l> :tabnext<CR>
 
 " Previous Tab
 nnoremap <silent> <C-h> :tabprev<CR>
+
+" Open Vimrc in split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 
 " Split stuff
@@ -154,120 +180,143 @@ map Y y$
 
 "}}}
 
-"{{{ Old Tags Stuff
-" configure tags - add additional tags here or comment out not-used ones
-"set tags+=~/.vimtags
-"set tags+=~/.vim/tags/cpp
-"set tags+=~/.vim/tags/gl
-"set tags+=~/.vim/tags/sdl
-"set tags+=~/.vim/tags/qt4
-
-" build tags of your own project with Ctrl-F12
-" map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-" OmniCppComplete
-"let OmniCpp_NamespaceSearch = 1
-"let OmniCpp_GlobalScopeSearch = 1
-"let OmniCpp_ShowAccess = 1
-"let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-"let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-"let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-"let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"}}}
-
-
-" automatically open and close the popup menu / preview window
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-"set completeopt=menuone,menu,longest,preview
-
-
-
-"{{{Scroll Color stuff
-map <silent><F5> :NEXTCOLOR<cr>
-map <silent><F4> :PREVCOLOR<cr>
-"}}}
 
 " Colour the current line you're on - is the : needed?
-:set cursorline
+set cursorline
 
 "{{{ Vundle Code
+set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
 
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle/')
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'posva/vim-vue'
+
 
 "Github bundles:
-Bundle 'xolox/vim-easytags'
-Bundle 'Rip-Rip/clang_complete'
-    " Complete options (disable preview scratch window, longest removed to aways show menu)
-    set completeopt=menu,menuone
+Plugin 'xolox/vim-misc'
 
-    " Limit popup menu height
-    set pumheight=20
+Plugin 'Lokaltog/vim-easymotion'
 
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'justinmk/vim-sneak'
+    let g:sneak#s_next = 1
 
-Bundle 'tpope/vim-surround'
-
-Bundle 'ervandew/supertab'
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.d,*.pyc     " MacOSX/Linux
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/](node_modules|vendor|target|dist|_build_cache|_dist)|(\.(swp|ico|git|svn))$', 
+      \ 'file': '\v\.(exe|so|dll|pyc|patch)$',
+      \ }
 
 
-Bundle 'klen/python-mode'
+"Plugin 'klen/python-mode'
+    "let g:pymode_rope = 0
+
+Plugin 'marijnh/tern_for_vim'
+
+Plugin 'davidhalter/jedi-vim'
+    let g:jedi#popup_select_first = 1
+
+Plugin 'Valloric/YouCompleteMe'
+    let g:ycm_autoclose_preview_window_after_completion=1
+
+"Plugin 'ervandew/supertab'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    " better key bindings for UltiSnipsExpandTrigger
+    "let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsExpandTrigger = "<Leader>s"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 
 
-" vim-scripts repos
-Bundle 'a.vim'
-    " CTRL-A Switches between .h and .{c,C,cpp}
-    nnoremap <C-a> :A<CR> 
+Plugin 'majutsushi/tagbar'
+    nnoremap <F3> :TagbarToggle<CR>
 
-Bundle 'c.vim'
-Bundle 'ScrollColors'
-Bundle 'snipMate'
-Bundle 'taglist.vim'
-    "{{{Taglist configuration
-    nnoremap <F3> :TlistToggle<CR>
-        let Tlist_Use_Right_Window = 1 " Open taglist on the right side
-        let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
-        let Tlist_Show_Menu = 1 "show Tags menu in gvim
-        let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
-        let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
-        let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
-    "}}}
-
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+    let NERDSpaceDelims=1
+Plugin 'scrooloose/syntastic'
     let g:syntastic_python_checkers=['pylint']
+    "let g:syntastic_mode_map={ 'mode': 'active',
+    "                     \ 'active_filetypes': [],
+    "                     \ 'passive_filetypes': ['cpp'] }
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
 
-Bundle 'The-NERD-tree'
-    nnoremap <F2> :NERDTreeToggle<CR>
-    let g:NERDTreeWinSize = 20
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
 
-Bundle 'LaTeX-Suite-aka-Vim-LaTeX'
-    "{{{Vim LaTeX stuff
-    set grepprg="grep \ -nH\ $*" "Set for latex-vim
-    " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-    " " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-    " " The following changes the default filetype back to 'tex':
-    let g:tex_flavor='latex'
-    "
-    let g:Tex_DefaultTargetFormat = "pdf"
-    let g:Tex_ViewRule_pdf = "kpdf"
-    "}}}
+    let g:syntastic_javascript_checkers = ['eslint']
 
+Plugin 'The-NERD-tree'
+    let g:NERDTreeWinSize = 30
+
+Plugin 'jistr/vim-nerdtree-tabs'
+    nnoremap <F2> :NERDTreeTabsToggle<CR>
+    let g:nerdtree_tabs_open_on_console_startup = 0
+
+Plugin 'mhinz/vim-startify'
+Plugin 'rking/ag.vim'
+Plugin 'Townk/vim-autoclose'
+
+" TODO: Include when powerline has Neovim support
+"Plugin 'powerline/powerline'
+set guifont=Inconsolata\ for\ Powerline\ 9
+"    set laststatus=2
+
+Plugin 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+
+Plugin 'tmhedberg/SimpylFold'
+
+Plugin 'kchmck/vim-coffee-script'
+
+Plugin 'vimwiki/vimwiki.git'
 
 "}}}
 
+call vundle#end()
 filetype on
+filetype plugin indent on
 
 " This may cause a weird blinking VIM bug on certain terminals
 :let &t_Co=256
