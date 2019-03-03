@@ -1,0 +1,39 @@
+set scrolloff=5
+
+" Set cases for when searching
+set ignorecase
+set smartcase
+
+" Incremental searching 
+set incsearch
+
+" Highlight things that we find with the search
+set hlsearch
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+map N Nzz
+map n nzz
+
+" Swap ; and :  Convenient.
+nnoremap ; :
+"nnoremap : ;
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" Make Y behave like other capitals
+map Y y$
+
+nnoremap H gT
+nnoremap L gt
+
+
+"" Pycharm-specific actions
+"" These aren't defined well inside pycharm since they sometimes rely on
+"" vim modes
+"" list of actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+
+" S does surround, but only in visual mode
+vmap S :action SurroundWith<CR>
