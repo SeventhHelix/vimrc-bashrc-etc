@@ -3,6 +3,10 @@
 " Set the python interpreter -- Neovim specific
 let g:python_host_prog = '/usr/bin/python2.7'
 
+
+
+
+
 " Necesary  for lots of cool vim things
 set nocompatible
 
@@ -86,7 +90,6 @@ vnoremap // y/<C-R>"<CR>
 
 " F5 to insert current time
 inoremap <F5> <C-R>=strftime("%c")<CR>
-inoremap <F5> <C-R>=strftime("%c")<CR>
 
 " }}}
 
@@ -131,13 +134,14 @@ endfunction
 "{{{ Mappings
 
 " Leader
-"let mapleader="\<SPACE>"
+let mapleader=","
 
-" Next Tab
-nnoremap <silent> <C-l> :tabnext<CR>
-
-" Previous Tab
-nnoremap <silent> <C-h> :tabprev<CR>
+" Tab keybindings
+" Commented out are old bindings that conflict with tmux's vim split navigation plugin
+" nnoremap <silent> <C-l> :tabnext<CR>
+" nnoremap <silent> <C-h> :tabprev<CR>
+nnoremap <silent> L :tabnext<CR>
+nnoremap <silent> H :tabprev<CR>
 
 " Open Vimrc in split
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -194,6 +198,7 @@ call vundle#begin('~/.vim/bundle/')
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'posva/vim-vue'
+Plugin 'airblade/vim-gitgutter'
 
 
 "Github bundles:
@@ -206,16 +211,21 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'justinmk/vim-sneak'
     let g:sneak#s_next = 1
 
-Plugin 'kien/ctrlp.vim'
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.d,*.pyc     " MacOSX/Linux
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" Plugin 'kien/ctrlp.vim'
+"     let g:ctrlp_map = '<c-p>'
+"     let g:ctrlp_cmd = 'CtrlP'
+"     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.d,*.pyc     " MacOSX/Linux
+"     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" 
+"     let g:ctrlp_custom_ignore = {
+"       \ 'dir':  '\v[\/](node_modules|jspm_packages|vendor|target|dist|_build_cache|_dist)|(\.(swp|ico|git|svn))$', 
+"       \ 'file': '\v\.(exe|so|dll|pyc|patch)$',
+"       \ }
 
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](node_modules|vendor|target|dist|_build_cache|_dist)|(\.(swp|ico|git|svn))$', 
-      \ 'file': '\v\.(exe|so|dll|pyc|patch)$',
-      \ }
+" Enable fzf plugin installed via homebrew
+" Doesn't use Vundle 'Plugin' syntax because it seems to be more complex
+set rtp+=/usr/local/opt/fzf
+nnoremap <silent> <c-p> :FZF<CR>
 
 
 "Plugin 'klen/python-mode'
@@ -226,8 +236,17 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'davidhalter/jedi-vim'
     let g:jedi#popup_select_first = 1
 
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+    let g:ycm_server_keep_logfiles = 1
+    let g:ycm_server_log_level = 'debug'
+
     let g:ycm_autoclose_preview_window_after_completion=1
+
+    " let g:ycm_server_python_interpreter  = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7' " Causes python crash dialog
+    " let g:ycm_server_python_interpreter  = '/usr/bin/python2.7' " Causes python crash dialog
+    " let g:ycm_server_python_interpreter  = '/Users/jeff.dyck/.pyenv/shims/python2'
+    let g:ycm_server_python_interpreter  = '/Users/jeff.dyck/.pyenv/shims/python2.7'
+
 
 "Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
@@ -238,6 +257,14 @@ Plugin 'honza/vim-snippets'
     let g:UltiSnipsExpandTrigger = "<Leader>s"
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
     let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" ES2015 code snippets (Optional)
+Plugin 'epilande/vim-es2015-snippets'
+
+" React code snippets
+Plugin 'epilande/vim-react-snippets'
+
+
 
 " http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
 " make YCM compatible with UltiSnips (using supertab)
@@ -252,32 +279,59 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'scrooloose/nerdcommenter'
     let NERDSpaceDelims=1
-Plugin 'scrooloose/syntastic'
-    let g:syntastic_python_checkers=['pylint']
-    "let g:syntastic_mode_map={ 'mode': 'active',
-    "                     \ 'active_filetypes': [],
-    "                     \ 'passive_filetypes': ['cpp'] }
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+" Commented out for now to test Ale plugin
+" Plugin 'scrooloose/syntastic'
+"     let g:syntastic_python_checkers=['pylint']
+"     "let g:syntastic_mode_map={ 'mode': 'active',
+"     "                     \ 'active_filetypes': [],
+"     "                     \ 'passive_filetypes': ['cpp'] }
+"     set statusline+=%#warningmsg#
+"     set statusline+=%{SyntasticStatuslineFlag()}
+"     set statusline+=%*
+" 
+"     let g:syntastic_always_populate_loc_list = 1
+"     let g:syntastic_auto_loc_list = 1
+"     let g:syntastic_check_on_open = 1
+"     let g:syntastic_check_on_wq = 0
+" 
+"     let g:syntastic_javascript_checkers = ['eslint']
 
-    let g:syntastic_javascript_checkers = ['eslint']
+Plugin 'w0rp/ale'
+    " Keep gutter column always open
+    let g:ale_sign_column_always = 1
+    let g:ale_linters = {
+    \   'javascript': ['eslint'],
+    \   'python': ['flake8'],
+    \}
+
+    let g:ale_set_quickfix = 1
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+
 
 Plugin 'The-NERD-tree'
     let g:NERDTreeWinSize = 30
+    let g:NERDTreeIgnore = ['\.pyc$']
 
 Plugin 'jistr/vim-nerdtree-tabs'
     nnoremap <F2> :NERDTreeTabsToggle<CR>
     let g:nerdtree_tabs_open_on_console_startup = 0
 
 Plugin 'mhinz/vim-startify'
+
+" TODO: DEPRECATED - Replace Ag with something else -- ack? ripgrep? 
 Plugin 'rking/ag.vim'
+    " alias Ag to Ag! which prevents it from auto-opening the first result
+    ca Ag Ag!
+
 Plugin 'Townk/vim-autoclose'
+Plugin 'christoomey/vim-tmux-navigator'
+    " Write all buffers before navigating from Vim to tmux pane
+    " Not specific to this plugin, but related to tmux
+    let g:tmux_navigator_save_on_switch = 2
 
 " TODO: Include when powerline has Neovim support
 "Plugin 'powerline/powerline'
@@ -311,6 +365,14 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'kchmck/vim-coffee-script'
 
 Plugin 'vimwiki/vimwiki.git'
+
+Plugin 'janko-m/vim-test'
+    nmap <silent> t<C-n> :TestNearest<CR>
+    nmap <silent> t<C-f> :TestFile<CR>
+    nmap <silent> t<C-s> :TestSuite<CR>
+    nmap <silent> t<C-l> :TestLast<CR>
+    nmap <silent> t<C-g> :TestVisit<CR>
+    let test#python#runner = 'pytest'
 
 "}}}
 
